@@ -9,8 +9,6 @@ class wget (
 ) {
 
   if $::operatingsystem != 'Darwin' {
-    if ! defined(Package['wget']) {
-      package { 'wget': ensure => $version }
-    }
+    package { "wget": ensure => installed }
   }
 }
