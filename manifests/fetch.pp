@@ -12,6 +12,7 @@ define wget::fetch (
   $verbose            = false,
   $redownload         = false,
   $nocheckcertificate = false,
+  $flags              = '',
   $execuser           = undef,
 ) {
 
@@ -43,7 +44,7 @@ define wget::fetch (
   }
 
   exec { "wget-${name}":
-    command     => "wget ${verbose_option}${nocheckcert_option} --output-document='${destination}' '${source}'",
+    command     => "wget ${flags} ${verbose_option}${nocheckcert_option} --output-document='${destination}' '${source}'",
     timeout     => $timeout,
     unless      => $unless_test,
     environment => $environment,
